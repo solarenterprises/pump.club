@@ -49,7 +49,7 @@ const showHowItworks = ref(false);
                 <!-- Right Side Actions -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-4">
                     <!-- Social Links -->
-                    <div class="flex items-center space-x-3">
+                    <!-- <div class="flex items-center space-x-3">
                         <BaseButton
                             url
                             :href="$page.props.links.twitter ?? '#'"
@@ -80,7 +80,7 @@ const showHowItworks = ref(false);
                         >
                             <TelegramIcon class="w-4 h-4" />
                         </BaseButton>
-                    </div>
+                    </div> -->
 
                     <!-- Action Buttons -->
                     <PrimaryButton

@@ -90,7 +90,7 @@
 						</ul>
 					</div>
 					<!-- Social & Subscribe Column -->
-					<div>
+					<!-- <div>
 						<ul class="space-y-4">
 							<li v-if="$page.props.links.twitter">
 								<a
@@ -127,7 +127,7 @@
 								</a>
 							</li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="space-y-4">
 						<h3 class="text-white font-medium">
 							{{ $t("Subscribe to notifications:") }}
