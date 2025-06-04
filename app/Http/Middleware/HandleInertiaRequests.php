@@ -97,7 +97,7 @@ class HandleInertiaRequests extends Middleware
                     });
                 }
                 $chains = Factory::query()->pluck('chainId')->map(fn($ch) => (int)$ch)->values()->unique()->all();
-                return [...$chains, 43113]; // always return avalanche fuji
+                return [...$chains, 43114]; // always return avalanche mainnet
             },
             'isAdminRoute' => $isAdminRoute,
             'projectId' => config('evm.project_id'),

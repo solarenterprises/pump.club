@@ -280,7 +280,7 @@ export const useWagmiAdapter = ({
         };
     }, {});
 
-    activeChains.push(43113);
+    activeChains.push(43114);
 
     console.log(activeChains);
     console.log(networks.filter(n => activeChains.includes(n?.id)));
