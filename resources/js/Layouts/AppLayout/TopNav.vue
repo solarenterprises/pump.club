@@ -48,40 +48,6 @@ const showHowItworks = ref(false);
 
                 <!-- Right Side Actions -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-4">
-                    <!-- Social Links -->
-                    <div class="flex items-center space-x-3">
-                        <BaseButton
-                            url
-                            :href="$page.props.links.twitter ?? '#'"
-                            target="_blank"
-                            size="sm"
-                            outlined
-                            iconMode
-                        >
-                            <XIcon class="w-4 h-4" />
-                        </BaseButton>
-                        <BaseButton
-                            url
-                            :href="$page.props.links.documentation ?? '#'"
-                            target="_blank"
-                            size="sm"
-                            outlined
-                            iconMode
-                        >
-                            <BookOpenText class="w-5 h-5" />
-                        </BaseButton>
-                        <BaseButton
-                            url
-                            :href="$page.props.links.telegram ?? '#'"
-                            target="_blank"
-                            size="sm"
-                            outlined
-                            iconMode
-                        >
-                            <TelegramIcon class="w-4 h-4" />
-                        </BaseButton>
-                    </div>
-
                     <!-- Action Buttons -->
                     <PrimaryButton
                         link
