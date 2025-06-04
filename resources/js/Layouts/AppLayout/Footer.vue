@@ -89,45 +89,6 @@
 							</li>
 						</ul>
 					</div>
-					<!-- Social & Subscribe Column -->
-					<!-- <div>
-						<ul class="space-y-4">
-							<li v-if="$page.props.links.twitter">
-								<a
-									:href="$page.props.links.twitter"
-									class="inline-flex items-center space-x-2 text-sm font-semibold hover:text-primary transition-colors">
-									<XIcon class="w-4 h-4" />
-									<span>{{ $t("Twitter") }}</span>
-								</a>
-							</li>
-							<li v-if="$page.props.links.tgGroup">
-								<a
-									:href="$page.props.links.tgGroup"
-									class="inline-flex items-center space-x-2 text-sm font-semibold hover:text-primary transition-colors">
-									<LucideSend class="w-5 h-5" />
-
-									<span>{{ $t("Telegram") }}</span>
-								</a>
-							</li>
-
-							<li v-if="$page.props.links.discord">
-								<a
-									:href="$page.props.links.discord"
-									class="inline-flex items-center space-x-2 text-sm font-semibold hover:text-primary transition-colors">
-									<DiscordIcon class="w-5 h-5" />
-									<span>Discord</span>
-								</a>
-							</li>
-							<li v-if="$page.props.links.youtube">
-								<a
-									:href="$page.props.links.youtube"
-									class="inline-flex items-center space-x-2 text-sm font-semibold hover:text-primary transition-colors">
-									<YouTubeIcon class="w-5 h-5" />
-									<span>Discord</span>
-								</a>
-							</li>
-						</ul>
-					</div> -->
 					<div class="space-y-4">
 						<h3 class="text-white font-medium">
 							{{ $t("Subscribe to notifications:") }}
