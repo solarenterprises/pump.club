@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('url', 300);
             $table->timestamp('starts_at');
-            $table->timestamp('ends_at');
+            $table->timestamp('ends_at')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();
             $table->softDeletes();

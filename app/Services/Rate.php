@@ -17,12 +17,12 @@ class Rate
      public static function api($path)
      {
  
-         $token = config('env.coincap_apikey');
-         $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path/?apiKey=$token");
-         if (!$response->successful()) {
-             throw new \Exception("Failed to fetch api for $path");
-         }
-         return $response->json('data', []);
+        $token = env('COINCAP_APIKEY');
+        $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path/?apiKey=$token");
+        if (!$response->successful()) {
+            throw new \Exception("Failed to fetch api for $path");
+        }
+        return $response->json('data', []);
      } 
 
     /**
