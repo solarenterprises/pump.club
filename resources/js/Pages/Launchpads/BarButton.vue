@@ -52,12 +52,12 @@
 			<span class="text-xs">
 				<span class="text-[#a4cf5e]">
 					{{
-						(
-							((parseFloat(launch.high) -
-								parseFloat(launch.low)) /
-								parseFloat(launch.low)) *
-							100
-						).toFixed(3)
+						(() => {
+							const high = parseFloat(launch.high) || 0;
+							const low = parseFloat(launch.low) || 0;
+							if (low === 0) return '0.000';
+							return (((high - low) / low) * 100).toFixed(3);
+						})()
 					}}%
 				</span>
 			</span>
