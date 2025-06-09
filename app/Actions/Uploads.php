@@ -54,7 +54,7 @@ class Uploads
         // user uploaded a file
         if (config('filesystems.default') === 'public') {
             $path = static::filepond((object)$request->input($path_key));
-            $url = Storage::disk('public')->url($path);
+            $url = rtrim(config('app.url'), '/') . '/storage/' . ltrim($path, '/');
         } else {
             $url = $request->input($uri_key);
             $path = $request->input($path_key);
