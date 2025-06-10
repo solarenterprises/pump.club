@@ -17,7 +17,10 @@ class Rate
      public static function api($path)
      {
  
-         $token = config('env.coincap_apikey');
+        $token = config('services.coincap.api_key');
+        if (!$token) {
+            throw new \Exception("CoinCap API key is not configured. Please set COINCAP_API_KEY in your .env file.");
+        }
          $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path/?apiKey=$token");
          if (!$response->successful()) {
              throw new \Exception("Failed to fetch api for $path");
