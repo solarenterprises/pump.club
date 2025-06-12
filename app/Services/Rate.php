@@ -19,9 +19,10 @@ class Rate
  
         $token = config('services.coincap.api_key');
         if (!$token) {
-            throw new \Exception("CoinCap API key is not configured. Please set COINCAP_API_KEY in your .env file.");
+            \Log::debug('CoinCap API key is not configured. Please set COINCAP_API_KEY in your .env file.');
+            throw new \Exception("Rate service configuration error.");
         }
-         $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path/?apiKey=$token");
+         $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path");
          if (!$response->successful()) {
              throw new \Exception("Failed to fetch api for $path");
          }
