@@ -43,5 +43,7 @@ return [
     'mailersend' => [
         'apiKey' => env('MAILERSEND_API_KEY', null),
     ],
-
+    'coincap' => [
+        'api_key' => env('COINCAP_API_KEY'),
+    ],
 ];
