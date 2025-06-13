@@ -62,23 +62,25 @@
 				"mainSeriesProperties.candleStyle.wickDownColor": "#ef5350",
 			},
 			datafeed: {
-				onReady: async (callback) => {
-					await callback({
-						supported_resolutions: [
-							"1",
-							"5",
-							"15",
-							"30",
-							"60",
-							"240",
-							"D",
-							"W",
-						],
-						currency_codes: ["USD"],
-						supports_marks: false,
-						supports_time: true,
-						supports_timescale_marks: false,
-					});
+				onReady: (callback) => {
+					setTimeout(() => {
+						callback({
+							supported_resolutions: [
+								"1",
+								"5",
+								"15",
+								"30",
+								"60",
+								"240",
+								"D",
+								"W",
+							],
+							currency_codes: ["USD"],
+							supports_marks: false,
+							supports_time: true,
+							supports_timescale_marks: false,
+						});
+					}, 0);
 				},
 
 				searchSymbols: (userInput, exchange, symbolType, onResult) => {
@@ -93,43 +95,45 @@
 					]);
 				},
 
-				resolveSymbol: async (
+				resolveSymbol: (
 					symbolName,
 					onSymbolResolvedCallback,
 					onResolveErrorCallback,
 				) => {
-					await onSymbolResolvedCallback({
-						name: props.launchpad.symbol,
-						full_name: props.launchpad.symbol,
-						description: props.launchpad.symbol,
-						type: "crypto",
-						session: "24x7",
-						timezone: "Etc/UTC",
-						ticker: props.launchpad.symbol,
-						minmov: 1,
-						pricescale: 100000000,
-						has_intraday: true,
-						intraday_multipliers: [
-							"1",
-							"5",
-							"15",
-							"30",
-							"60",
-							"240",
-						],
-						supported_resolutions: [
-							"1",
-							"5",
-							"15",
-							"30",
-							"60",
-							"240",
-							"D",
-							"W",
-						],
-						volume_precision: 8,
-						data_status: "streaming",
-					});
+					setTimeout(() => {
+						onSymbolResolvedCallback({
+							name: props.launchpad.symbol,
+							full_name: props.launchpad.symbol,
+							description: props.launchpad.symbol,
+							type: "crypto",
+							session: "24x7",
+							timezone: "Etc/UTC",
+							ticker: props.launchpad.symbol,
+							minmov: 1,
+							pricescale: 100000000,
+							has_intraday: true,
+							intraday_multipliers: [
+								"1",
+								"5",
+								"15",
+								"30",
+								"60",
+								"240",
+							],
+							supported_resolutions: [
+								"1",
+								"5",
+								"15",
+								"30",
+								"60",
+								"240",
+								"D",
+								"W",
+							],
+							volume_precision: 8,
+							data_status: "streaming",
+						});
+					}, 0);
 				},
 
 				getBars: async (
