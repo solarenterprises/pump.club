@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { Link } from "@inertiajs/vue3";
-import { BookOpenText } from "lucide-vue-next";
+import { BookOpenText, Plus } from "lucide-vue-next";
 import { TelegramIcon, XIcon } from "vue3-simple-icons";
 
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
@@ -49,13 +49,14 @@ const showHowItworks = ref(false);
                 <!-- Right Side Actions -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-4">
                     <!-- Action Buttons -->
-                    <PrimaryButton
-                        link
-                        href="/launch"
-                        size="xs"
-                        class="mr-2"
+                    <PrimaryButton link href="/launch"
+                        :class="[
+                            'mr-2 rounded-full px-5 py-4 text-white hover:bg-transparent flex items-center gap-1 border border-white/10 text-sm',
+                            isConnected ? 'bg-primary' : 'bg-transparent'
+                        ]"
                     >
-                        {{ $t("Launch Meme") }}
+                        Create Coin
+                        <Plus class="w-4 h-4" />
                     </PrimaryButton>
                     <Web3Auth />
                     <AuthLink />
@@ -109,16 +110,10 @@ const showHowItworks = ref(false);
             class="lg:hidden"
         >
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <Link
-                    href="/my-tokens"
-                    class="block px-3 py-2 rounded text-base font-medium text-gray-300 hover:text-primary hover:bg-gray-700"
-                    :class="{
-                        'bg-gray-900 text-primary':
-                            $page.url.startsWith('/my-tokens'),
-                    }"
-                >
-                {{ $t("My Memes") }}
-                </Link>
+                   <PrimaryButton link href="/launch"
+                            class="!rounded-none !rounded-l-full !bg-primary !border-0 grow justify-center text-white px-5 py-4">
+                            Create Coin
+                        </PrimaryButton>
                 <button
                     @click="showHowItworks = !showHowItworks"
                     class="block px-3 py-2 rounded text-base font-medium text-gray-300 hover:text-primary hover:bg-gray-700"
