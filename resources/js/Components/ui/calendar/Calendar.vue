@@ -1,7 +1,8 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { CalendarRoot, useForwardPropsEmits } from 'radix-vue';
 import { computed } from 'vue';
+
+import { CalendarRoot, useForwardPropsEmits } from 'radix-vue';
+
 import {
   CalendarCell,
   CalendarCellTrigger,
@@ -15,6 +16,7 @@ import {
   CalendarNextButton,
   CalendarPrevButton,
 } from '.';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   modelValue: { type: null, required: false },

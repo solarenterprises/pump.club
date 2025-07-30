@@ -1,3 +1,5 @@
+import { inject } from 'vue';
+
 import {
   FieldContextKey,
   useFieldError,
@@ -5,7 +7,7 @@ import {
   useIsFieldTouched,
   useIsFieldValid,
 } from 'vee-validate';
-import { inject } from 'vue';
+
 import { FORM_ITEM_INJECTION_KEY } from './injectionKeys';
 
 export function useFormField() {

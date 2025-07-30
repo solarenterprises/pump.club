@@ -13,17 +13,23 @@
 }
 
 @layer utilities {
+
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	.no-scrollbar::-webkit-scrollbar {
 		display: none;
 	}
+
 	/* Hide scrollbar for IE, Edge and Firefox */
 	.no-scrollbar {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none;
+		/* IE and Edge */
+		scrollbar-width: none;
+		/* Firefox */
 	}
 }
+
 @layer components {
+
 	.container,
 	.container-fluid,
 	.container-lg,
@@ -41,6 +47,7 @@
 	}
 
 	@media (min-width: 576px) {
+
 		.container,
 		.container-sm {
 			max-width: 540px;
@@ -48,6 +55,7 @@
 	}
 
 	@media (min-width: 768px) {
+
 		.container,
 		.container-md,
 		.container-sm {
@@ -56,6 +64,7 @@
 	}
 
 	@media (min-width: 992px) {
+
 		.container,
 		.container-lg,
 		.container-md,
@@ -65,6 +74,7 @@
 	}
 
 	@media (min-width: 1200px) {
+
 		.container,
 		.container-lg,
 		.container-md,
@@ -75,6 +85,7 @@
 	}
 
 	@media (min-width: 1400px) {
+
 		.container,
 		.container-lg,
 		.container-md,
@@ -84,6 +95,7 @@
 			max-width: 1320px;
 		}
 	}
+
 	p {
 		@apply text-gray-600 dark:text-gray-400;
 	}
@@ -122,10 +134,10 @@
 
 	.main-content {
 		@apply mt-[60px] grid grid-cols-1 place-content-start transition-[width,
-        margin-left,
-        margin-right,
-        padding-left,
-        padding-right] duration-[.10s] ease-in print: m-0 md:ml-[var(--main-sidebar-width)];
+		margin-left,
+		margin-right,
+		padding-left,
+		padding-right] duration-[.10s] ease-in print: m-0 md:ml-[var(--main-sidebar-width)];
 	}
 
 	.table-default {
@@ -140,7 +152,7 @@
 		@apply bg-gray-50 dark:bg-gray-700;
 	}
 
-	.table-default thead > tr > th {
+	.table-default thead>tr>th {
 		@apply text-gray-800 dark:text-gray-200 text-xs font-semibold tracking-wider py-3 px-6 text-left uppercase;
 	}
 
@@ -148,23 +160,23 @@
 		@apply divide-y divide-gray-100 dark:divide-gray-600;
 	}
 
-	.table-default tbody > tr > td {
+	.table-default tbody>tr>td {
 		padding: 1rem 1.5rem;
 	}
 
-	.table-default tfoot > tr > td {
+	.table-default tfoot>tr>td {
 		--tw-border-opacity: 1;
 		border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 		border-top-width: 1px;
 		padding: 0.75rem 1.5rem;
 	}
 
-	.dark .table-default tfoot > tr > td {
+	.dark .table-default tfoot>tr>td {
 		--tw-border-opacity: 1;
 		border-color: rgba(55, 65, 81, var(--tw-border-opacity));
 	}
 
-	.table-default.borderless-row tbody > :not([hidden]) ~ :not([hidden]) {
+	.table-default.borderless-row tbody> :not([hidden])~ :not([hidden]) {
 		border-style: none;
 	}
 
@@ -213,22 +225,16 @@
 	.form-checkbox,
 	.form-radio,
 	.form-switch {
-		@apply relative shrink-0 cursor-pointer select-none appearance-none overflow-hidden outline-none
-   focus:outline-none;
+		@apply relative shrink-0 cursor-pointer select-none appearance-none overflow-hidden outline-none focus:outline-none;
 		print-color-adjust: exact;
 	}
 
 	.form-switch {
-		@apply [--thumb-border:2px] before:absolute focus-visible:ring
-  before:top-[var(--thumb-border)] before:left-[var(--thumb-border)]
-  before:h-[calc(100%-var(--thumb-border)*2)] 
-  before:w-[calc((100%/2)-(var(--thumb-border)*2))]
-  checked:before:translate-x-[calc(100%+(var(--thumb-border)*2))];
+		@apply [--thumb-border:2px] before:absolute focus-visible:ring before:top-[var(--thumb-border)] before:left-[var(--thumb-border)] before:h-[calc(100%-var(--thumb-border)*2)] before:w-[calc((100%/2)-(var(--thumb-border)*2))] checked:before:translate-x-[calc(100%+(var(--thumb-border)*2))];
 	}
 
 	.form-switch.outline {
-		@apply before:w-[calc((100%/2)-(var(--thumb-border)*2)-1px)]
-  checked:before:translate-x-[calc(100%+(var(--thumb-border)*2)+2px)];
+		@apply before:w-[calc((100%/2)-(var(--thumb-border)*2)-1px)] checked:before:translate-x-[calc(100%+(var(--thumb-border)*2)+2px)];
 	}
 
 	.form-radio {
@@ -243,7 +249,7 @@
 
 	.form-radio,
 	.form-checkbox {
-		@apply inline-block border ease-out before:absolute before:inset-0 before:h-full  before:w-full before:scale-0 checked:before:scale-100 hover:shadow-lg;
+		@apply inline-block border ease-out before:absolute before:inset-0 before:h-full before:w-full before:scale-0 checked:before:scale-100 hover:shadow-lg;
 	}
 
 	.form-radio.basic,
@@ -258,7 +264,7 @@
 
 	.badge,
 	.tag {
-		@apply text-xs font-sans tracking-wide align-baseline transition-all duration-200  inline-flex items-center justify-center px-2 py-1.5 leading-none rounded font-medium;
+		@apply text-xs font-sans tracking-wide align-baseline transition-all duration-200 inline-flex items-center justify-center px-2 py-1.5 leading-none rounded font-medium;
 	}
 
 	.tag {
@@ -318,9 +324,7 @@
 		animation: shake 0.7s ease-in-out;
 	}
 
-	.filepond.filepond--root[data-style-panel-layout~="circle"]
-		.filepond--file
-		[data-align*="right"] {
+	.filepond.filepond--root[data-style-panel-layout~="circle"] .filepond--file [data-align*="right"] {
 		right: calc(50% - 1em);
 		top: calc(50% - 1em);
 	}
@@ -328,6 +332,7 @@
 	.filepond {
 		@apply block w-full;
 	}
+
 	.filepond .filepond--credits {
 		@apply hidden;
 	}
@@ -378,8 +383,7 @@
 }
 
 .form-range {
-	@apply block w-full appearance-none bg-transparent outline-none 
-  [--range-thumb-size:1.125rem] [--range-track-h:0.375rem];
+	@apply block w-full appearance-none bg-transparent outline-none [--range-thumb-size:1.125rem] [--range-track-h:0.375rem];
 }
 
 .form-range::-webkit-slider-thumb {
@@ -401,4 +405,60 @@
 
 .link {
 	@apply hover:text-red-500 border dark:border-gray-600 inline-flex cursor-pointer items-center justify-center p-4 text-center tracking-wide outline-none transition-all duration-200 focus:outline-none disabled:pointer-events-none disabled:opacity-60 h-6 w-6 rounded-full hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25;
+}
+
+.messages-container::-webkit-scrollbar {
+	width: 5px;
+	background: #23272f;
+	/* Track color */
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+	background: #4b5563;
+	/* Thumb color */
+	border-radius: 8px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+	background: #6b7280;
+	/* Thumb hover color */
+}
+
+/* For Firefox */
+.messages-container {
+	scrollbar-width: thin;
+	scrollbar-color: #4b5563 #23272f;
+}
+
+.home-bg {
+	@apply bg-black;
+	background: radial-gradient(ellipse 50% 30% at 50% 0%, rgba(218, 80, 0, 0.445) 0%, rgba(0, 0, 0, 0) 100%) black;
+}
+
+@media (min-width: 768px) {
+	.home-bg {
+		background: radial-gradient(ellipse 50% 30% at 50% 0%, rgba(218, 80, 0, 0.445) 0%, rgba(0, 0, 0, 0) 100%) no-repeat, url("../../public/right-circle.png") right 0px no-repeat, url("../../public/circle.png") left 0px no-repeat, black;
+	}
+}
+
+.footer-layout {
+	background: radial-gradient(ellipse 40% 40% at 50% 100%, rgba(218, 80, 0, 0.26) 0%, rgba(0, 0, 0, 0) 100%) no-repeat, black;
+
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
 }

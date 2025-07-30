@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvancedController;
 use App\Http\Controllers\LaunchpadsController;
 use App\Http\Controllers\MsgsController;
 use App\Http\Controllers\ProfileController;
@@ -20,20 +21,26 @@ Route::get('/privacy', fn() => Inertia::render('Privacy'))->name('privacy');
 
 
 Route::controller(S3Controller::class)
-    ->group(function () {
-        Route::post('sign/{disk?}/{folder?}', 'sign')->name('s3.sign');
-    });
+->group(function () {
+    Route::post('sign/{disk?}/{folder?}', 'sign')->name('s3.sign');
+});
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'view'])->name('profile.view');
 });
+
+#advanced
+Route::name('advanced.')->controller(AdvancedController::class)->group(function () {
+    Route::get('/advanced', 'advanced')->name('advanced');
+    Route::get('/advanced/search', 'search')->name('search');
+    Route::get('/advanced/coin/{contract}', 'advancedTradingView')
+    ->where('contract', '0x[a-fA-F0-9]{40}')
+    ->name('advancedTradingView');
+});
+
 require __DIR__ . '/otp.php';
 require __DIR__ . '/web3.php';
-
-
 
 #launchpads
 Route::name('launchpads.')->controller(LaunchpadsController::class)->group(function () {

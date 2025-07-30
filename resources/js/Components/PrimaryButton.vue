@@ -52,12 +52,12 @@ const comp = computed(() =>
         :is="comp"
         :class="[
             'inline-flex items-center justify-center font-medium transition-colors duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+            'focus:outline-none focus:ring-offset-2',
             sizeClasses[size],
             iconMode ? 'aspect-square p-0' : '',
             outlined
-                ? 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-black'
-                : 'bg-primary text-black border-2 border-transparent hover:bg-primary-dark',
+                ? 'bg-transparent border text-primary hover:bg-primary hover:text-black'
+                : 'bg-primary text-black border border-transparent hover:bg-primary-dark',
             'rounded cursor-pointer disabled:pointer-events-none disabled:opacity-70',
         ]"
         v-bind="$attrs"

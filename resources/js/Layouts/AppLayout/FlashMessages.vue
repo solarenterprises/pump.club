@@ -30,7 +30,7 @@ const dismissInfo = () => dismiss("info");
 
 <template>
     <div v-if="hasMessages" aria-live="assertive"
-        class="z-50 mt-12 pointer-events-none fixed inset-0 flex items-start px-4 py-6 sm:p-6">
+        class="z-[9999] mt-12 pointer-events-none fixed inset-0 flex items-start px-4 py-6 sm:p-6">
         <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
             <!-- Success Message -->
             <transition enter-active-class="transform ease-out duration-300 transition"

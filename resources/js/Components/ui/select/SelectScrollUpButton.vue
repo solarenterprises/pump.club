@@ -1,8 +1,11 @@
 <script setup>
-import { cn } from '@/lib/utils';
+import { computed } from 'vue';
+
 import { ChevronUp } from 'lucide-vue-next';
 import { SelectScrollUpButton, useForwardProps } from 'radix-vue';
-import { computed } from 'vue';
+
+import { cn } from '@/lib/utils';
+
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },

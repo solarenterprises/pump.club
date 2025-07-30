@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { ComboboxSeparator } from 'radix-vue';
 import { computed } from 'vue';
+
+import { ComboboxSeparator } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },

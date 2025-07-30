@@ -260,11 +260,10 @@ export const useWagmiAdapter = ({
     activeChains = [],
 }) => {
     // Create transports object for WagmiAdapter
-    console.log(ankr, infura, blast);
     const transports = activeChains.reduce((acc, chainId) => {
         const transportUrls = getTransportUrls(chainId, { ankr, infura, blast });
         // Skip if the chain isn't supported by the selected provider
-        console.log(chainId);
+
         if (!transportUrls.length) {
             console.warn(`Chain ID ${chainId} not supported by ${rpc} provider`);
             return acc;
@@ -281,9 +280,6 @@ export const useWagmiAdapter = ({
     }, {});
 
     activeChains.push(43114);
-
-    console.log(activeChains);
-    console.log(networks.filter(n => activeChains.includes(n?.id)));
 
     // Create and return the WagmiAdapter instance
     return new WagmiAdapter({

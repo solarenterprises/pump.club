@@ -1,7 +1,8 @@
 <script setup>
-import { Dialog, DialogContent } from '@/Components/ui/dialog';
 import { useForwardPropsEmits } from 'radix-vue';
+
 import Command from './Command.vue';
+import { Dialog, DialogContent } from '@/Components/ui/dialog';
 
 const props = defineProps({
   open: { type: Boolean, required: false },

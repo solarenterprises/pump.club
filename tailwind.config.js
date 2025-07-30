@@ -26,6 +26,9 @@ export default {
             },
         },
         extend: {
+            backgroundImage: {
+                'gradient-orange-dark': 'linear-gradient(to right, #F49803 0%, #DA5000 50%, #010101 100%)',
+            },
             maxWidth: {
                 sm: `${540 / 16}rem`,
                 md: `${720 / 16}rem`,
@@ -38,9 +41,11 @@ export default {
             },
             colors: {
                 primary: {
-                    DEFAULT: '#ffbe1a',
+                    DEFAULT: '#FF5B04',
                     dark: '#e6aa17'  // ~10% darker for hover state
                 },
+                'black-card': "#28282840",
+                'white/4': "#FFFFFF0A",
                 gray: {
                     '50': "#fafafa",
                     '100': "#f5f5f5",
@@ -61,8 +66,9 @@ export default {
                     '850': "#1f1f1f",  // New intermediate shade
                     '900': "#171717",
                     '925': "#101010",  // New intermediate shade
-                    '950': "#0a0a0a"
-                }
+                    '950': "#0a0a0a",
+                },
+
 
             },
             backgroundImage: (theme) => ({

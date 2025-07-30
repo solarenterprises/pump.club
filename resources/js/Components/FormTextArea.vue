@@ -11,7 +11,7 @@
 		modelValue: String,
 		emoji: { type: Boolean, default: true },
 		rows: { type: Number, default: 5 },
-		placeholder: { type: String, default: "Enter Details..." },
+		placeholder: { type: String, default: "Write a short description" },
 	});
 	const textarea = ref(null);
 	const open = ref(false);
@@ -69,14 +69,14 @@
 	<div class="flex items-start space-x-4">
 		<div class="min-w-0 flex-1 relative">
 			<div
-				class="border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500">
+				class="bg-[#FFFFFF0A] rounded-lg shadow-sm overflow-hidden">
 				<textarea
 					ref="textarea"
 					:rows="rows"
 					v-model="modelVal"
 					@blur="updateCursor"
 					@keyup="updateCursor"
-					class="block w-full p-3 border-0 text-gray-700 dark:text-gray-300 resize-none focus:ring-0 sm:text-sm outline-none focus:outline-none bg-transparent"
+					class="block w-full p-3 border-0 text-gray-700 dark:text-gray-300 resize-none focus:ring-0 sm:text-md outline-none focus:outline-none bg-transparent"
 					:placeholder="placeholder" />
 				<!-- Spacer textareaent to match the height of the toolbar -->
 				<div aria-hidden="true">

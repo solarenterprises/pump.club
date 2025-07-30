@@ -1,16 +1,12 @@
 <script setup>
-import { cn } from '@/lib/utils';
 import { Check } from 'lucide-vue-next';
-import {
-  CheckboxIndicator,
-  CheckboxRoot,
-  useForwardPropsEmits,
-} from 'radix-vue';
-import { computed } from 'vue';
+import { CheckboxRoot, useForwardPropsEmits, CheckboxIndicator } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
-  defaultChecked: { type: Boolean, required: false },
   checked: { type: [Boolean, String], required: false },
+  defaultChecked: { type: Boolean, required: false },
   disabled: { type: Boolean, required: false },
   required: { type: Boolean, required: false },
   name: { type: String, required: false },
@@ -20,30 +16,21 @@ const props = defineProps({
   as: { type: null, required: false },
   class: { type: null, required: false },
 });
+
 const emits = defineEmits(['update:checked']);
 
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props;
-
-  return delegated;
-});
-
-const forwarded = useForwardPropsEmits(delegatedProps, emits);
+const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
   <CheckboxRoot
     v-bind="forwarded"
-    :class="
-      cn(
-        'peer h-4 w-4 shrink-0 rounded-sm border border-gray-200 border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-gray-900 data-[state=checked]:text-gray-50 dark:border-gray-800 dark:border-gray-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300 dark:data-[state=checked]:bg-gray-50 dark:data-[state=checked]:text-gray-900',
-        props.class,
-      )
-    "
+    :class="cn(
+      'peer h-4 w-4 shrink-0 rounded-sm border border-gray-600 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-white data-[state=checked]:text-black',
+      props.class
+    )"
   >
-    <CheckboxIndicator
-      class="flex h-full w-full items-center justify-center text-current"
-    >
+    <CheckboxIndicator class="flex h-full w-full items-center justify-center text-current">
       <slot>
         <Check class="h-4 w-4" />
       </slot>

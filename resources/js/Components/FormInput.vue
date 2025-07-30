@@ -20,7 +20,7 @@
 		help: String,
 		size: {
 			type: String,
-			default: "sm",
+			default: "md",
 		},
 	});
 	defineEmits([
@@ -88,7 +88,7 @@
 
 		<div
 			v-if="$slots.trail || $slots.lead"
-			class="relative rounded-md shadow-sm">
+			class="relative rounded-full shadow-sm">
 			<div
 				v-if="$slots.lead"
 				class="absolute inset-y-0 left-0 pl-1.5 flex items-center pointer-events-none">
@@ -109,12 +109,12 @@
 				@focus="$emit('focused', $event)"
 				@keyup="$emit('onKeyUp', $event)"
 				:type="type ? type : hide ? 'password' : 'text'"
-				class="border block w-full focus:outline-none focus:ring-1 appearance-none transition-colors duration-300 disabled:dark:bg-gray-750"
+				class="block w-full focus:outline-none appearance-none transition-colors duration-300 disabled:dark:bg-gray-750"
 				:class="[
 					{ 'cursor-pointer': readonly },
 					error
-						? 'bg-red-50 border-red-500  text-red-900 placeholder-red-700 rounded-md focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
-						: 'bg-white border-gray-300 text-gray-900  rounded-md focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
+						? 'bg-red-50 text-red-900 placeholder-red-700 rounded-lg dark:bg-red-100'
+						: 'bg-white text-gray-900 rounded-lg dark:bg-white/10 dark:border-white/10 dark:placeholder-gray-400 dark:text-white',
 					classes,
 					...(Array.isArray(inputClasses)
 						? inputClasses
@@ -147,17 +147,14 @@
 			ref="input"
 			@input="$emit('update:modelValue', $event.target.value)"
 			class="appearance-none"
-			:class="[
-				error
-					? 'bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-md focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
-					: 'bg-white border-gray-300 text-gray-900  rounded-md focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
-				'border block w-full focus:outline-none  focus:ring-1 appearance-none disabled:dark:bg-gray-750',
+			:class="['bg-white border-gray-300 text-gray-900  rounded-md dark:bg-[#FFFFFF0A] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
+				'block w-full focus:outline-none appearance-none disabled:dark:bg-gray-750',
 				classes,
 				inputClasses,
 			]"
 			:type="type ? type : hide ? 'password' : 'text'"
 			:placeholder="placeholder" />
-		<p v-if="error" class="mt-2 text-sm !text-red-600 dark:!text-red-400">
+		<p v-if="error" class="mt-2 text-sm !text-red-500 font-normal">
 			<template
 				v-if="typeof error === 'string' || error instanceof String">
 				{{ error }}

@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { ProgressIndicator, ProgressRoot } from 'radix-vue';
 import { computed } from 'vue';
+
+import { ProgressIndicator, ProgressRoot } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   modelValue: { type: [Number, null], required: false, default: 0 },

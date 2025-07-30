@@ -1,8 +1,10 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { ToastRoot, useForwardPropsEmits } from 'radix-vue';
 import { computed } from 'vue';
+
+import { ToastRoot, useForwardPropsEmits } from 'radix-vue';
+
 import { toastVariants } from '.';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   class: { type: null, required: false },

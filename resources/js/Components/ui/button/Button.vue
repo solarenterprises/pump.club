@@ -1,7 +1,8 @@
 <script setup>
-import { cn } from '@/lib/utils';
 import { Primitive } from 'radix-vue';
+
 import { buttonVariants } from '.';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   variant: { type: null, required: false },

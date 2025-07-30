@@ -17,6 +17,7 @@ import VueTippy from "vue-tippy";
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import "../css/vcalendar-theme.css";
 import messages from "./vue-i18n-locales.generated.js";
+import store from './store';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ createInertiaApp({
             .use(VueQueryPlugin, { queryClient })
             .use(i18n)
             .use(VueTippy)
+            .use(store)
             .mount(el);
         return app;
     },

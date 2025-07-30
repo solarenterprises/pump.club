@@ -1,56 +1,90 @@
 .theme-dark:root {
 	/* Platform and Background Colors */
-	--tv-color-platform-background: #404040; /* gray-900 - page background */
-	--tv-color-pane-background: #1f1f1f; /* gray-800 - chart background */
+	--tv-color-platform-background: #000;
+	/* gray-900 - page background */
+	--tv-color-pane-background: #000;
+	/* gray-800 - chart background */
 
 	/* Toolbar Colors */
-	--tv-color-toolbar-button-background-hover: #333333; /* gray-750 */
-	--tv-color-toolbar-button-background-expanded: #333333; /* gray-750 */
-	--tv-color-toolbar-button-background-active: #404040; /* gray-700 */
-	--tv-color-toolbar-button-background-active-hover: #494949; /* gray-650 */
-	--tv-color-toolbar-button-text: #d4d4d4; /* gray-300 */
-	--tv-color-toolbar-button-text-hover: #e5e5e5; /* gray-200 */
-	--tv-color-toolbar-button-text-active: #f5f5f5; /* gray-100 */
-	--tv-color-toolbar-button-text-active-hover: #fafafa; /* gray-50 */
-	--tv-color-item-active-text: #f5f5f5; /* gray-100 */
-	--tv-color-toolbar-toggle-button-background-active: #404040; /* gray-700 */
-	--tv-color-toolbar-toggle-button-background-active-hover: #494949; /* gray-650 */
-	--tv-color-toolbar-divider-background: #1f1f1f; /* gray-850 */
-	--tv-color-toolbar-save-layout-loader: #8b8b8b; /* gray-450 */
+	--tv-color-toolbar-button-background-hover: #333333;
+	/* gray-750 */
+	--tv-color-toolbar-button-background-expanded: #333333;
+	/* gray-750 */
+	--tv-color-toolbar-button-background-active: #404040;
+	/* gray-700 */
+	--tv-color-toolbar-button-background-active-hover: #494949;
+	/* gray-650 */
+	--tv-color-toolbar-button-text: #d4d4d4;
+	/* gray-300 */
+	--tv-color-toolbar-button-text-hover: #e5e5e5;
+	/* gray-200 */
+	--tv-color-toolbar-button-text-active: #f5f5f5;
+	/* gray-100 */
+	--tv-color-toolbar-button-text-active-hover: #fafafa;
+	/* gray-50 */
+	--tv-color-item-active-text: #f5f5f5;
+	/* gray-100 */
+	--tv-color-toolbar-toggle-button-background-active: #404040;
+	/* gray-700 */
+	--tv-color-toolbar-toggle-button-background-active-hover: #494949;
+	/* gray-650 */
+	--tv-color-toolbar-divider-background: #1f1f1f;
+	/* gray-850 */
+	--tv-color-toolbar-save-layout-loader: #8b8b8b;
+	/* gray-450 */
 
 	/* Popup Colors */
-	--tv-color-popup-background: #1f1f1f; /* gray-800 */
-	--tv-color-popup-element-text: #d4d4d4; /* gray-300 */
-	--tv-color-popup-element-text-hover: #e5e5e5; /* gray-200 */
-	--tv-color-popup-element-background-hover: #333333; /* gray-750 */
-	--tv-color-popup-element-divider-background: #1f1f1f; /* gray-850 */
-	--tv-color-popup-element-secondary-text: #a3a3a3; /* gray-400 */
-	--tv-color-popup-element-hint-text: #8b8b8b; /* gray-450 */
-	--tv-color-popup-element-text-active: #f5f5f5; /* gray-100 */
-	--tv-color-popup-element-background-active: #404040; /* gray-700 */
+	--tv-color-popup-background: #1f1f1f;
+	/* gray-800 */
+	--tv-color-popup-element-text: #d4d4d4;
+	/* gray-300 */
+	--tv-color-popup-element-text-hover: #e5e5e5;
+	/* gray-200 */
+	--tv-color-popup-element-background-hover: #333333;
+	/* gray-750 */
+	--tv-color-popup-element-divider-background: #1f1f1f;
+	/* gray-850 */
+	--tv-color-popup-element-secondary-text: #a3a3a3;
+	/* gray-400 */
+	--tv-color-popup-element-hint-text: #8b8b8b;
+	/* gray-450 */
+	--tv-color-popup-element-text-active: #f5f5f5;
+	/* gray-100 */
+	--tv-color-popup-element-background-active: #404040;
+	/* gray-700 */
 
 	/* Toolbox Colors */
-	--tv-color-popup-element-toolbox-text: #d4d4d4; /* gray-300 */
-	--tv-color-popup-element-toolbox-text-hover: #e5e5e5; /* gray-200 */
-	--tv-color-popup-element-toolbox-text-active-hover: #f5f5f5; /* gray-100 */
-	--tv-color-popup-element-toolbox-background-hover: #333333; /* gray-750 */
-	--tv-color-popup-element-toolbox-background-active-hover: #404040; /* gray-700 */
+	--tv-color-popup-element-toolbox-text: #d4d4d4;
+	/* gray-300 */
+	--tv-color-popup-element-toolbox-text-hover: #e5e5e5;
+	/* gray-200 */
+	--tv-color-popup-element-toolbox-text-active-hover: #f5f5f5;
+	/* gray-100 */
+	--tv-color-popup-element-toolbox-background-hover: #333333;
+	/* gray-750 */
+	--tv-color-popup-element-toolbox-background-active-hover: #404040;
+	/* gray-700 */
 
 	/* Chart-specific colors */
-	--tv-color-chart-grid: #333333; /* gray-750 - grid lines */
-	--tv-color-chart-scale-text: #8b8b8b; /* gray-450 - scale text */
-	--tv-color-chart-scale-bg: #1f1f1f; /* gray-800 - scale background */
+	--tv-color-chart-grid: #333333;
+	/* gray-750 - grid lines */
+	--tv-color-chart-scale-text: #8b8b8b;
+	/* gray-450 - scale text */
+	--tv-color-chart-scale-bg: #1f1f1f;
+	/* gray-800 - scale background */
 
 	/* Candlestick colors */
-	--tv-color-candlestick-up: #22c55e; /* green-500 */
-	--tv-color-candlestick-down: #ef4444; /* red-500 */
+	--tv-color-candlestick-up: #22c55e;
+	/* green-500 */
+	--tv-color-candlestick-down: #ef4444;
+	/* red-500 */
 }
 
 /* Light theme - if needed */
 :root:not(.theme-dark) {
 	/* You can define light theme colors here if needed */
 	/* Currently inheriting dark theme */
-	--tv-color-platform-background: #171717;
-	--tv-color-pane-background: #1f1f1f;
+	--tv-color-platform-background: #000;
+	--tv-color-pane-background: #000;
 	/* ... copy all other properties from dark theme */
 }

@@ -1,12 +1,13 @@
 <script setup>
-import { HiArrowLeft } from "oh-vue-icons/icons";
-import Loading from "@/Components/Loading.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Link, useForm } from "@inertiajs/vue3";
-import VueIcon from "@/Components/VueIcon.vue";
+import { HiArrowLeft } from "oh-vue-icons/icons";
+
 import FormInput from "@/Components/FormInput.vue";
 import FormSwitch from "@/Components/FormSwitch.vue";
+import Loading from "@/Components/Loading.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import VueIcon from "@/Components/VueIcon.vue";
+import AdminLayout from "@/Layouts/AdminLayout.vue";
 defineProps({
     title:{required:false,type:String},
 });

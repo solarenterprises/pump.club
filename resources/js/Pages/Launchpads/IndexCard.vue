@@ -1,148 +1,204 @@
-<!-- LaunchpadCard.vue -->
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import { Globe2, Send } from "lucide-vue-next";
-import { DiscordIcon, XIcon } from "vue3-simple-icons";
+import { ref, computed, watch, onMounted } from 'vue';
 
-import BaseButton from "@/Components/BaseButton.vue";
-import { useBillions } from "@/hooks";
-import NetworkIcon from "@/Icons/NetworkIcon.vue";
+import { Link } from '@inertiajs/vue3';
+import { Star } from 'lucide-vue-next';
 
-defineProps({
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectSeparator
+} from '@/Components/ui/select';
+import watchLists from '@/store/watchLists';
+
+const useLists = () => {
+    const lists = ref([
+        { name: 'Main list', default: true },
+        { name: 'List #1', default: false },
+        { name: 'List #2', default: false },
+    ]); 
+
+    const loadLists = () => {
+        try {
+            const storedLists = localStorage.getItem('watchListsOptions');
+            if (storedLists) {
+                lists.value = JSON.parse(storedLists);
+            }
+        } catch (error) {
+            console.error('Error loading lists from localStorage:', error);
+        }
+    };
+
+    return {
+        lists,
+        loadLists
+    };
+};
+
+const props = defineProps({
     launchpad: {
         type: Object,
         required: true,
     },
 });
 
-const formatVolume = (value) => {
-    return `$${value}`;
+const selectedList = ref(null);
+const selectOpen = ref(false);
+
+const { lists, loadLists } = useLists();
+
+const isWatchListed = computed(() => {
+     const found = watchLists.value.find(
+       (item) => item.c_address === props.launchpad.contract
+     );
+     return found && found.list;
+   });
+
+onMounted(() => {
+  loadLists();
+  const found = watchLists.value.find(
+    (item) => item.c_address === props.launchpad.contract
+  );
+  if (found) {
+    selectedList.value = found.list;
+  }
+});
+
+const removeFromWatchlist = () => {
+    const idx = watchLists.value.findIndex(
+        (item) => item.c_address === props.launchpad.contract
+    );
+    if (idx !== -1) {
+        watchLists.value.splice(idx, 1);
+        selectedList.value = null;
+    }
 };
+
+const handleStarClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if (isWatchListed.value) {
+        removeFromWatchlist();
+    } else {
+        selectOpen.value = true;
+    }
+};
+
+watch(selectedList, (val) => {
+     if (val === 'Manage lists') {
+         selectOpen.value = false;
+         selectedList.value = null;
+         return;
+     }
+     
+     if (val === null) {
+         return;
+     }
+     
+     const idx = watchLists.value.findIndex(
+       (item) => item.c_address === props.launchpad.contract
+     );
+     if (idx !== -1) {
+       watchLists.value[idx].list = val;
+     } else {
+       watchLists.value.push({
+         c_address: props.launchpad.contract,
+         list: val,
+       });
+     }
+     selectOpen.value = false;
+    });
+
 </script>
 
 <template>
-    <Link :href="route('launchpads.show', { launchpad: launchpad.contract })">
-    <div class="bg-gray-850 hover:bg-gray-800 rounded border border-gray-700 p-4 relative">
-        <!-- Bonding Curve Type Banner -->
+    <Link :href="route('launchpads.show', { launchpad: launchpad.contract })"
+        class="group relative bg-gray-800/50 rounded-[32px] p-4 flex flex-col gap-3">
+        <div
+            class="absolute top-4 right-4 transition z-20"
+            :class="{
+                'opacity-100': selectOpen,
+                'opacity-0 group-hover:opacity-100': !selectOpen
+            }"
+        >
+            <Select
+                v-if="!isWatchListed"
+                v-model="selectedList"
+                :open="selectOpen"
+                @update:open="val => selectOpen = val"
+            >
+                <SelectTrigger class="bg-transparent border-none shadow-none p-0 h-auto w-auto focus:ring-0 focus:outline-none">
+                    <Star class="w-5 h-5 text-white" fill="none" />
+                </SelectTrigger>
+                <SelectContent class="w-40 min-w-0 right-0 left-auto mt-2">
+                    <SelectItem 
+                        v-for="list in lists" 
+                        :key="list.name" 
+                        :value="list.name"
+                    >
+                        {{ list.name }}
+                    </SelectItem>
+                    <SelectSeparator />
+                    <SelectItem value="Manage lists" class="text-gray-400">Manage lists</SelectItem>
+                </SelectContent>
+            </Select>
+            
+            <button
+                v-else
+                @click="handleStarClick"
+                class="bg-transparent border-none shadow-none p-0 h-auto w-auto focus:ring-0 focus:outline-none cursor-pointer"
+            >
+                <Star class="w-5 h-5 text-white" fill="white" />
+            </button>
+        </div>
         <div
             v-if="launchpad.status"
-            :class="launchpad.isFinalized
-                    ? 'bg-red-500 text-white '
-                    : launchpad.status == 'Prebond'
-                        ? 'border border-gray-700 bg-gray-900 text-primary'
-                        : 'bg-primary text-black '
-                "
-            class="absolute -top-3 left-1/2 -translate-x-1/2 uppercase text-center right-0 px-3 py-0.5 rounded-full text-xs font-medium"
+            :class="launchpad.status && launchpad.status.toLowerCase() === 'bonding'
+                    ? 'bg-gray-500 text-white border-gray-400 border'
+                    : launchpad.status && launchpad.status.toLowerCase() === 'prebond'
+                        ? 'border-gray-700 bg-gray-900 text-white border'
+                        : 'bg-[#DA5200]/30 text-[#DA5200] border-[#DA5200] border'"
+            class="absolute flex items-center gap-2 -top-4 left-1/2 -translate-x-1/2 text-sm capitalize px-4 py-2 rounded-xl shadow text-center z-10"
         >
             {{ launchpad.status }}
+            <img v-if="launchpad.status && launchpad.status.toLowerCase() === 'finalized'" :src="'/star.png'" alt="Status Icon" />
         </div>
-        <div class="text-white absolute right-2 top-2">
-            <NetworkIcon
-                class="w-5 h-5"
-                :chainId="launchpad.chainId"
-            />
+        <div class="flex flex-row justify-center gap-3">
+        <div class="w-1/3">
+            <img :src="launchpad.logo" class="w-full h-full object-cover rounded-3xl"
+                alt="Launchpad Image" @error="$event.target.src = '/indexcard.png'" />
         </div>
-        <div class="grid">
-            <!-- Token Image -->
-            <div class="flex items-start gap-4 mb-1">
-                <div class="relative">
-                    <img
-                        :src="launchpad.logo"
-                        :alt="launchpad.name"
-                        class="w-12 h-12 rounded"
-                    />
-                    <span class="absolute top-0 right-0 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
-                        {{ launchpad.percentage }}%
+        <div class="flex flex-col gap-1 w-2/3 p-3">
+            <div class="flex items-center gap-2">
+                <img :src="launchpad.profile_photo_url ?? '/avatar.png'" class="w-6 h-6 rounded-full" alt="User Avatar"
+                    @error="$event.target.src = '/avatar.png'" />
+                <div class="text-sm text-gray-400">
+                    <span class="font-semibold text-white">
+                        @{{ launchpad.name }}
                     </span>
-                </div>
-                <div>
-                    <h3 class="text-white text-lg font-semibold">
-                        {{ launchpad.name }} ({{ launchpad.symbol }})
-                    </h3>
-                    <div class="flex z-10 items-center gap-2">
-                        <p>{{ launchpad.createdAgo }}</p>
-                        <BaseButton
-                            iconMode
-                            outlined
-                            secondary
-                            size="xss"
-                        >
-                            <XIcon class="w-3 h-3" />
-                        </BaseButton>
-                        <BaseButton
-                            iconMode
-                            outlined
-                            secondary
-                            size="xss"
-                        >
-                            <Send class="w-3 h-3" />
-                        </BaseButton>
-                        <BaseButton
-                            iconMode
-                            outlined
-                            secondary
-                            size="xss"
-                        >
-                            <Globe2 class="w-3 h-3" />
-                        </BaseButton>
-                        <BaseButton
-                            iconMode
-                            outlined
-                            secondary
-                            size="xss"
-                        >
-                            <DiscordIcon class="w-3 h-3" />
-                        </BaseButton>
-                    </div>
+                    <span class="ml-2">{{ launchpad.createdAgo }}</span>
                 </div>
             </div>
-            <!-- Token Info -->
-            <div class="flex-1">
-                <div class="flex items-center justify-between">
-                    <div class="h-14">
-                        <p
-                            v-if="launchpad.description"
-                            class="text-gray-400 line-clamp-3 text-sm mt-1"
-                        >
-                            {{ launchpad.description }}
-                        </p>
-                    </div>
-                </div>
-                <!-- Stats -->
-                <div class="mt-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-primary text-lg">
-                                {{ launchpad.percentage }}%
-                            </span>
-                            <span class="text-white">
-                                MCap ${{ useBillions(launchpad.marketCap) }}
-                            </span>
-                        </div>
-                        <div class="flex items-center text-gray-400 text-sm space-x-2">
-                            <span>{{ launchpad.trades_count }} txns</span>
-                            <span>/</span>
-                            <span>
-                                {{ formatVolume(launchpad.volume24h) }} 24h
-                                vol
-                            </span>
-                        </div>
-                    </div>
-                    <!-- Progress Bar -->
-                    <div class="w-full bg-gray-700 rounded-full h-1.5">
-                        <div
-                            class="h-full rounded-full bg-gradient-to-r to-emerald-500 from-primary"
-                            :style="{
-                                width: `${Math.min(
-                                    launchpad.percentage,
-                                    100,
-                                )}%`,
-                            }"
-                        ></div>
-                    </div>
-                </div>
+            <div>
+                <h3 class="text-white font-normal">
+                    {{ launchpad.name }} ({{ launchpad.symbol }})
+                </h3>
+            </div>
+            <div class="text-xs text-green-400 bg-green-500/10 rounded-full px-2 py-1 self-start">
+                Market cap: {{ launchpad.marketCap }}
+            </div>
+            <div class="text-sm text-gray-400">
+                Replies: {{ launchpad.msg_count ?? 0 }}
             </div>
         </div>
+    </div>
+    <div>
+        <p class="text-sm text-gray-400 line-clamp-3">
+            {{ launchpad.description }}
+        </p>
     </div>
     </Link>
 </template>

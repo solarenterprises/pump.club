@@ -1,8 +1,10 @@
 <script setup>
+import { computed } from 'vue';
+
+import { CalendarCellTrigger, useForwardProps } from 'radix-vue';
+
 import { buttonVariants } from '@/Components/ui/button';
 import { cn } from '@/lib/utils';
-import { CalendarCellTrigger, useForwardProps } from 'radix-vue';
-import { computed } from 'vue';
 
 const props = defineProps({
   day: { type: null, required: true },

@@ -1,8 +1,10 @@
 <script setup>
+import { computed } from 'vue';
+
+import { AlertDialogAction } from 'radix-vue';
+
 import { buttonVariants } from '@/Components/ui/button';
 import { cn } from '@/lib/utils';
-import { AlertDialogAction } from 'radix-vue';
-import { computed } from 'vue';
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },

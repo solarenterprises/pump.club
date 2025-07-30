@@ -1,6 +1,6 @@
 <script setup>
-import { cn } from '@/lib/utils';
 import { useFormField } from './useFormField';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   class: { type: null, required: false },

@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { PopoverContent, PopoverPortal, useForwardPropsEmits } from 'radix-vue';
 import { computed } from 'vue';
+
+import { PopoverContent, PopoverPortal, useForwardPropsEmits } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 defineOptions({
   inheritAttrs: false,

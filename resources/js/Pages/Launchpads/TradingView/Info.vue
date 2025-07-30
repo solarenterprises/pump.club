@@ -51,14 +51,14 @@ const chain = computed(() =>
         </div>
 
         <!-- Telegram Button -->
-        <div class="flex items-center gap-3 p-2 my-4 bg-gray-850">
+        <div class="flex items-center gap-3 my-4">
             <BaseButton
                 url
                 :href="launchpad.twitter"
                 :disabled="!launchpad.twitter"
                 target="_blank"
                 secondary
-                outlined
+                class="bg-white/10 rounded-lg"
             >
                 <XIcon class="w-4 h-4" />
             </BaseButton>
@@ -68,7 +68,7 @@ const chain = computed(() =>
                 :disabled="!launchpad.telegram"
                 target="_blank"
                 secondary
-                outlined
+                class="bg-white/10 rounded-lg"
             >
                 <TelegramIcon class="w-4 h-4" />
             </BaseButton>
@@ -78,7 +78,7 @@ const chain = computed(() =>
                 target="_blank"
                 :disabled="!launchpad.discord"
                 secondary
-                outlined
+                class="bg-white/10 rounded-lg"
             >
                 <DiscordIcon class="w-4 h-4" />
             </BaseButton>
@@ -88,14 +88,13 @@ const chain = computed(() =>
                 :href="launchpad.website"
                 :disabled="!launchpad.website"
                 secondary
-                outlined
+                class="bg-white/10 rounded-lg"
             >
                 <Globe2 class="w-4 h-4" />
             </BaseButton>
             <BaseButton
-                class="ml-auto"
                 secondary
-                outlined
+                class="bg-white/10 rounded-lg ml-auto"
             >
                 {{ launchpad.holders_count }} Holders
             </BaseButton>
@@ -121,7 +120,7 @@ const chain = computed(() =>
         <!-- Time Stats -->
 
         <!-- Alerts Button -->
-        <div class="grid gap-3 mt-5 rounded border border-gray-750 bg-gray-850 pt-4">
+        <div class="grid gap-3 mt-5 rounded-lg bg-white/10 pt-4">
             <div class="px-4">
                 <a
                     :href="$page.props.links?.tgChannel ?? '#'"

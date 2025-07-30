@@ -68,7 +68,6 @@
 	};
 	const authForm = useForm({ otp: "" });
 	const submitOTP = async () => {
-		console.log("hehehehhe");
 		authForm.post(window.route("modal.verify"), {
 			preserveState: true,
 			preserveScroll: true,

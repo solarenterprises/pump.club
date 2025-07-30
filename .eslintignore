@@ -1,0 +1,17 @@
+# Third-party libraries
+resources/js/Pages/Launchpads/TradingView/charting_library/
+resources/js/vue-i18n-locales.generated.js
+
+# Generated files
+*.generated.js
+*.min.js
+*.bundle.js
+
+# Build outputs
+node_modules/
+dist/
+build/
+
+# Laravel specific
+storage/
+bootstrap/cache/ 

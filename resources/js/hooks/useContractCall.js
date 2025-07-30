@@ -43,7 +43,6 @@ export const useReactiveContractCall = (
         busy.value = method;
         simulation.value = method;
         status.value = t('Sending Transaction ...');
-        console.log(config);
         const walletClient = await getWalletClient(config);
         const response = await publicClient.simulateContract({
             address: get(contract),

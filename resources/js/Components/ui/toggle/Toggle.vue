@@ -1,8 +1,10 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { Toggle, useForwardPropsEmits } from 'radix-vue';
 import { computed } from 'vue';
+
+import { Toggle, useForwardPropsEmits } from 'radix-vue';
+
 import { toggleVariants } from '.';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   defaultValue: { type: Boolean, required: false },

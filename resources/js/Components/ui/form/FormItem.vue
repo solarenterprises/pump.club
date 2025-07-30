@@ -1,8 +1,10 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { useId } from 'radix-vue';
 import { provide } from 'vue';
+
+import { useId } from 'radix-vue';
+
 import { FORM_ITEM_INJECTION_KEY } from './injectionKeys';
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   class: { type: null, required: false },

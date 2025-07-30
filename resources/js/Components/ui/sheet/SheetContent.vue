@@ -1,5 +1,6 @@
 <script setup>
-import { cn } from '@/lib/utils';
+import { computed } from 'vue';
+
 import { X } from 'lucide-vue-next';
 import {
   DialogClose,
@@ -8,8 +9,9 @@ import {
   DialogPortal,
   useForwardPropsEmits,
 } from 'radix-vue';
-import { computed } from 'vue';
+
 import { sheetVariants } from '.';
+import { cn } from '@/lib/utils';
 
 defineOptions({
   inheritAttrs: false,

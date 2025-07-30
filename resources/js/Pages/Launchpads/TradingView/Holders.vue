@@ -20,6 +20,7 @@
 	});
 
 	const { formatted } = usePriceInfo(props.launchpad, props.usdRate);
+	console.log(props.holders);
 </script>
 <template>
 	<div class="w-fulln text-sm bg-gray-850 rounded-lg overflow-hidden">

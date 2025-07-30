@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { MenubarRoot, useForwardPropsEmits } from 'radix-vue';
 import { computed } from 'vue';
+
+import { MenubarRoot, useForwardPropsEmits } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   modelValue: { type: String, required: false },

@@ -72,8 +72,8 @@
 			<slot name="approval" :state="state" :approve="approve">
 				<TxStatus v-if="state.called === 'approve'" :state="state" />
 				<BaseButton
+					class="bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow rounded-full px-7 py-2 text-base font-normal focus:outline-none transition-all hover:text-white"
 					:disabled="state.busy || state.confirming"
-					class="w-full"
 					outlined
 					@click.prevent="approve">
 					<slot name="button">

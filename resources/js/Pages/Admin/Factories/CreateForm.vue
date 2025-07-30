@@ -23,7 +23,6 @@ const props = defineProps({
 });
 const chainId = useChainId();
 const { address, chain } = useAccount();
-console.log(chainId.value)
 const form = useForm({
     name: "My Factory",
     chainId: chainId.value,

@@ -97,7 +97,7 @@ const showInitialPrice = computed(() => {
         <!-- Price and Market Cap -->
         <div class="grid grid-cols-2 gap-4 mb-4">
             <!-- Price Card -->
-            <div class="bg-gray-800 p-4 rounded-lg">
+            <div class="bg-white/10 p-4 rounded-lg">
                 <div class="text-gray-400 text-sm mb-1">
                     {{ $t("PRICE") }}
                     <span
@@ -119,7 +119,7 @@ const showInitialPrice = computed(() => {
             </div>
 
             <!-- Market Cap Card -->
-            <div class="bg-gray-800 p-4 rounded-lg">
+            <div class="bg-white/10 p-4 rounded-lg">
                 <div class="text-gray-400 text-sm mb-1">
                     {{ $t("MARKET CAP") }}
                 </div>

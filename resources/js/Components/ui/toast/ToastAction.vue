@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { ToastAction } from 'radix-vue';
 import { computed } from 'vue';
+
+import { ToastAction } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   altText: { type: String, required: true },

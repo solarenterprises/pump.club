@@ -20,4 +20,15 @@ export default defineConfig({
             },
         }),
     ],
+      build: {
+        rollupOptions: {
+            onwarn() {
+                
+            },
+        },
+        commonjsOptions: {
+            include: [/node_modules/],
+            transformMixedEsModules: true,
+        },
+    },
 });

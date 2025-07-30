@@ -28,7 +28,6 @@
 	const uploadError = ref(null);
 	const handleProcessFile = (error, file) => {
 		if (error) uploadError.value = error;
-		console.log(file);
 		emit("update:file", {
 			serverId: file.serverId,
 			fileExtension: file.fileExtension,

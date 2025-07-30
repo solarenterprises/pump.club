@@ -1,13 +1,13 @@
 <script setup>
-import { cn } from '@/lib/utils';
 import { Check } from 'lucide-vue-next';
 import {
   SelectItem,
+  useForwardProps,
   SelectItemIndicator,
   SelectItemText,
-  useForwardProps,
 } from 'radix-vue';
-import { computed } from 'vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   value: { type: String, required: true },
@@ -18,31 +18,17 @@ const props = defineProps({
   class: { type: null, required: false },
 });
 
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props;
-
-  return delegated;
-});
-
-const forwardedProps = useForwardProps(delegatedProps);
+const forwardedProps = useForwardProps(props);
 </script>
 
 <template>
   <SelectItem
     v-bind="forwardedProps"
-    :class="
-      cn(
-        'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-gray-800 dark:focus:text-gray-50',
-        props.class,
-      )
-    "
+    :class="cn(
+      'relative flex w-full cursor-default select-none items-center rounded-lg py-1.5 pl-2 pr-2 text-sm outline-none focus:bg-white/10 focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      props.class,
+    )"
   >
-    <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <SelectItemIndicator>
-        <Check class="h-4 w-4" />
-      </SelectItemIndicator>
-    </span>
-
     <SelectItemText>
       <slot />
     </SelectItemText>

@@ -14,17 +14,32 @@ class Rate
      * call the coincap api
      */
 
-     public static function api($path)
+   public static function api($path)
      {
- 
-        $token = config('services.coincap.api_key');
-        if (!$token) {
-            \Log::debug('CoinCap API key is not configured. Please set COINCAP_API_KEY in your .env file.');
-            throw new \Exception("Rate service configuration error.");
-        }
-         $response = Http::withToken($token)->get("https://rest.coincap.io/v3/$path");
+         $token = config('services.coincap.api_key');
+         if (!$token) {
+             throw new \Exception("CoinCap API key is not configured. Please set COINCAP_API_KEY in your .env file.");
+         }
+         
+         $url = "https://rest.coincap.io/v3/$path";
+         $params = ['apiKey' => $token];
+         
+         \Log::info("Making CoinCap API call", [
+             'url' => $url,
+             'params' => $params,
+             'token_length' => strlen($token)
+         ]);
+         
+         $response = Http::get($url, $params);
+         
+         \Log::info("CoinCap API response", [
+             'status' => $response->status(),
+             'body' => $response->body(),
+             'headers' => $response->headers()
+         ]);
+         
          if (!$response->successful()) {
-             throw new \Exception("Failed to fetch api for $path");
+             throw new \Exception("Failed to fetch api for $path. Status: {$response->status()}, Response: {$response->body()}");
          }
          return $response->json('data', []);
      } 

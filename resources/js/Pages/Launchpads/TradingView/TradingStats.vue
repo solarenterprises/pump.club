@@ -32,7 +32,7 @@
 		</div>
 
 		<!-- Trading Stats -->
-		<div class="bg-gray-800 rounded-lg p-4 mb-4">
+		<div class="bg-white/10 rounded-lg p-4 mb-4">
 			<!-- Transactions -->
 			<div class="grid grid-cols-3 gap-4 mb-4">
 				<div>

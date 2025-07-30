@@ -13,11 +13,19 @@ defineProps({
     errors: String,
     label: String,
 });
+
+const pond = ref(null);
+defineExpose({
+    clear: () => pond.value?.removeFile(),
+    pond,
+});
+
 const emit = defineEmits(["update:modelValue", "update:file"]);
 const FilePond = vueFilePond(
     FilePondPluginFileValidateType,
     FilePondPluginImagePreview
 );
+
 const server = reactive({
     url: "/filepond/api",
     process: "/process",
@@ -27,19 +35,45 @@ const server = reactive({
         "X-CSRF-TOKEN": computed(() => usePage().props.csrf_token),
     },
 });
+
 const uploadError = ref(null);
+const uploadIcon = computed(() => {
+    return `
+        <div class="upload-area-inner">
+            <div class="mb-2">
+                <img src="/file-upload.svg" class="w-12 h-12 text-white mx-auto" />
+            </div>
+            <div class="upload-title">Select video or image to upload</div>
+            <div class="upload-subtitle">Or drag and drop it here</div>
+            <div class="upload-btn">Select file</div>
+        </div>
+    `;
+});
+
 const handleProcessFile = (error, file) => {
     if (error) uploadError.value = error;
-    console.log(file);
     emit("update:file", {
         serverId: file.serverId,
         fileExtension: file.fileExtension,
         fileType: file.fileType,
         filenameWithoutExtension: file.filenameWithoutExtension,
+        filename: file.filename,
         id: file.id,
     });
-    emit("update:modelValue", file.filename);
+    if (file && file.filename) {
+        emit("update:modelValue", file.filename);
+    } else {
+        emit("update:modelValue", "");
+    }
+    if (file && file.file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            emit("preview", e.target.result);
+        };
+        reader.readAsDataURL(file.file);
+    }
 };
+
 </script>
 <template>
     <div class="flex items-center">
@@ -47,18 +81,21 @@ const handleProcessFile = (error, file) => {
             <FilePond
                 name="filepond"
                 ref="pond"
-                class-name="logo filepond fp-bordered label-icon w-20 "
-                label-idle="Upload Logo"
+                class-name="logo filepond fp-bordered label-icon "
                 :allow-multiple="false"
                 :allowImagePreview="true"
                 stylePanelAspectRatio="1:1"
-                stylePanelLayout="compact circle"
-                labelIdle="<svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewbox='0 0 24 24' stroke='currentColor'>
-                                      <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'></path>
-                                    </svg>"
+                stylePanelLayout="compact"
+                :label-idle="uploadIcon"
                 accepted-file-types="image/jpeg, image/png, image/svg+xml"
                 :server="server"
                 @processfile="handleProcessFile"
+                :allowBrowse="true"
+                :allowDrop="true"
+                :allowPaste="true"  
+                :allowReplace="true"
+                :allowRevert="true"
+                :instantUpload="true"
             />
         </div>
         <p
@@ -81,5 +118,118 @@ const handleProcessFile = (error, file) => {
     [data-align*="right"] {
     right: calc(50% - 1em);
     top: calc(50% - 1em);
+}
+
+/* Make the FilePond component larger */
+.filepond.filepond--root {
+    min-height: 200px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.filepond--panel-root {
+    min-height: 200px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.filepond--drop-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.filepond--file-info {
+    font-size: 14px;
+}
+
+.filepond--image-preview-wrapper {
+    min-height: 200px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* Remove dotted border */
+.filepond--panel-root {
+    border: none !important;
+    outline: none !important;
+}
+
+.filepond--drop-label {
+    border: none !important;
+    outline: none !important;
+}
+
+.filepond--root {
+    border: none !important;
+    outline: none !important;
+}
+
+.filepond--root {
+    border-radius: 16px;
+    min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px dashed #fff2;
+    box-shadow: 0 2px 16px #0004;
+    position: relative;
+}
+
+.upload-area-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.upload-area-inner svg {
+    margin-bottom: 18px;
+}
+
+.upload-title {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.upload-subtitle {
+    color: #fff8;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.upload-btn {
+    background: #da520024;
+    color: #da5200;
+    border-radius: 8px;
+    padding: 8px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+
+.upload-btn:hover {
+    background: #ff7300;
+    color: #fff;
+}
+
+.filepond--action-remove,
+.filepond--file-action-button[data-align="right"] {
+    display: none !important;
 }
 </style>

@@ -1,7 +1,9 @@
 <script setup>
-import { cn } from '@/lib/utils';
-import { ContextMenuSeparator } from 'radix-vue';
 import { computed } from 'vue';
+
+import { ContextMenuSeparator } from 'radix-vue';
+
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },

@@ -183,13 +183,6 @@ export const usePriceInfo = (launchpad, usdRate) => {
                             info.currentPrice = Number(formatEther(price));
                         }
 
-                        console.log({
-                            sqrtPriceX96: sqrtPriceX96.toString(),
-                            price: price.toString(),
-                            wethIsToken0,
-                            currentPrice: info.currentPrice
-                        });
-
                     } catch (error) {
                         console.error('Error calculating Uniswap price:', error);
                         // Fallback to reserve-based price if Uniswap calculation fails
